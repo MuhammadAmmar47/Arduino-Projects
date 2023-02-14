@@ -1,0 +1,51 @@
+int IRSensor1 = 2; // connect ir sensor to arduino pin 2
+int IRSensor2 = 3; // connect ir sensor to arduino pin 2
+int LED = 13; // conect Led to arduino pin 13
+
+void setup(){
+
+  pinMode (IRSensor1, INPUT); // sensor pin INPUT
+  pinMode (LED, OUTPUT); // Led pin OUTPUT
+//    pinMode(3,INPUT);
+    pinMode(IRSensor2,INPUT);
+    pinMode(9,OUTPUT);
+    pinMode(6,OUTPUT);
+}
+
+void loop(){
+    int statusSensor1 = digitalRead (IRSensor1);
+    int statusSensor2 = digitalRead (IRSensor2);
+  if (statusSensor1 == 1){
+    digitalWrite(LED, LOW); // LED LOW
+  }
+  
+  else
+  {
+    digitalWrite(LED, HIGH); // LED High
+  }
+  if (statusSensor2 == 1){
+    digitalWrite(LED, LOW); // LED LOW
+  }
+  
+  else
+  {
+    digitalWrite(LED, HIGH); // LED High
+  }
+  
+    if((digitalRead(IRSensor1) == LOW) && (digitalRead(IRSensor2) == LOW)){
+        analogWrite(9,170);
+        analogWrite(6,170);
+    }
+    if((((digitalRead(IRSensor1))==(HIGH))) && (((digitalRead(IRSensor2))==(LOW)))){
+        analogWrite(9,0);
+        analogWrite(6,170);
+    }
+    if((((digitalRead(IRSensor1))==(LOW))) && (((digitalRead(IRSensor2))==(HIGH)))){
+        analogWrite(9,170);
+        analogWrite(6,0);
+    }
+    if((((digitalRead(IRSensor1))==(HIGH))) && (((digitalRead(IRSensor2))==(HIGH)))){
+        analogWrite(9,0);
+        analogWrite(6,0);
+    }
+}
